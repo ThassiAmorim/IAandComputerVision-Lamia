@@ -1,13 +1,13 @@
 import airflow
 from airflow import DAG
-from airflow.contrib.sensors.file_sensor import FileSensor
-from airflow.sensors.http_sensor import HttpSensor
-from airflow.operators.bash_operator import BashOperator
-from airflow.operators.python_operator import PythonOperator
-from airflow.operators.hive_operator import HiveOperator
-from airflow.contrib.operators.spark_submit_operator import SparkSubmitOperator
-from airflow.operators.email_operator import EmailOperator
-from airflow.operators.slack_operator import SlackAPIPostOperator
+from airflow.sensors.filesystem import FileSensor
+from airflow.providers.http.sensors.http import HttpSensor
+from airflow.operators.bash import BashOperator
+from airflow.operators.python import PythonOperator
+from airflow.providers.apache.hive.operators.hive import HiveOperator
+from airflow.providers.apache.spark.operators.spark_submit import SparkSubmitOperator
+from airflow.providers.email.operators.email import EmailOperator
+from airflow.providers.slack.operators.slack_webhook import SlackWebhookOperator
 from datetime import datetime, timedelta
 
 import csv
@@ -31,22 +31,22 @@ def download_rates():
     with open(
         "/usr/local/airflow/dags/files/forex_currencies.csv"
     ) as forex_currencies:  # abre o arquivo CSV
-        reader = csv.DictReader(forex_currencies, delimiter=";")  # le como dicionário
+        reader = csv.DictReader(forex_currencies, delimiter=";")  # le como dicionario
         for row in reader:  # percorre as linhas do arquivo
             base = row["base"]
             with_pairs = row["with_pairs"].split(" ")
             indata = requests.get(
                 "https://api.exchangeratesapi.io/latest?base=" + base
-            ).json()  # requisição da API
+            ).json()  # requisicao da API
             outdata = {
                 "base": base,
                 "rates": {},
                 "last_update": indata["date"],
-            }  # dicionário de saida
+            }  # dicionario de saida
             for pair in with_pairs:  # Itera sobre os pares de moedas
                 outdata["rates"][pair] = indata["rates"][
                     pair
-                ]  # guarda taxa de câmbio no dicionário
+                ]  # guarda taxa de cambio no dicionario
             with open(
                 "/usr/local/airflow/dags/files/forex_rates.json", "a"
             ) as outfile:  # abre o JSON para escrita
@@ -74,7 +74,7 @@ with DAG(
         timeout=20,  # tempo de espera maximo
     )
 
-    # verifica se o CSV ta disponível
+    # verifica se o CSV ta disponivel
     is_forex_currencies_file_available = FileSensor(
         task_id="is_forex_currencies_file_available",
         fs_conn_id="forex_path",
@@ -83,22 +83,22 @@ with DAG(
         timeout=20,
     )
 
-    # Operador Python para baixar taxas do cambio
+    # operador Python para baixar taxas do cambio
     downloading_rates = PythonOperator(
-        task_id="downloading_rates",  # Nome da tarefa
-        python_callable=download_rates,  # Função Python a ser executada
+        task_id="downloading_rates",  # nome da tarefa no airflow
+        python_callable=download_rates,  # função Python a ser executada
     )
 
-    # Operador Bash para salvar taxas de ambio no HDFS
+    # operador Bash para salvar taxas de ambio no HDFS
     saving_rates = BashOperator(
         task_id="saving_rates",
         bash_command="""
             hdfs dfs -mkdir -p /forex && \
             hdfs dfs -put -f $AIRFLOW_HOME/dags/files/forex_rates.json /forex
-            """,  # Comando Bash para criar diretório e salvar o arquivo
+            """,  # comando bash para criar a pasta e salvar o arquivo
     )
 
-    # Operador Hive para criar uma tabela Hive externa
+    # operador Hive para criar uma tabela Hive externa
     creating_forex_rates_table = HiveOperator(
         task_id="creating_forex_rates_table",
         hive_cli_conn_id="hive_conn",
@@ -119,7 +119,7 @@ with DAG(
         """,
     )
 
-    # Operador Spark para processar os dados
+    # operador Spark para processar os dados
     forex_processing = SparkSubmitOperator(
         task_id="forex_processing",
         conn_id="spark_conn",
@@ -127,7 +127,7 @@ with DAG(
         verbose=False,
     )
 
-    # Operador para enviar email
+    # operador para enviar email
     sending_email_notification = EmailOperator(
         task_id="sending_email",
         to="airflow_course@yopmail.com",
@@ -137,16 +137,14 @@ with DAG(
         """,
     )
 
-    # Operador para enviar mensagem no Slack
-    sending_slack_notification = SlackAPIPostOperator(
+    # operador para enviar mensagem no Slack
+    sending_slack_notification = SlackWebhookOperator(
         task_id="sending_slack",
-        token="xxx",  # Token de autenticação
-        username="airflow",  # usuário que envia a mensagem
-        text="DAG forex_data_pipeline: DONE",  # texto da mensagem
-        channel="#airflow-exploit",  # canal Slack
+        slack_webhook_conn_id="slack_conn",
+        message="DAG forex_data_pipeline: DONE",  # texto da mensagem
     )
 
-    # ordem de execução das tarefas
+    # ordem de execucao das tarefas
     (
         is_forex_rates_available
         >> is_forex_currencies_file_available
