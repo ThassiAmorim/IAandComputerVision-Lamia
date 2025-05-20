@@ -1,0 +1,193 @@
+thassi-ubuntu@Thassi:~$ docker run -it --name exercicio_ubuntu ubuntu sh
+Unable to find image 'ubuntu:latest' locally
+latest: Pulling from library/ubuntu
+0622fac788ed: Already exists
+Digest: sha256:6015f66923d7afbc53558d7ccffd325d43b4e249f41a6e93eef074c9505d2233
+Status: Downloaded newer image for ubuntu:latest
+
+# apt-get update
+Get:1 http://security.ubuntu.com/ubuntu noble-security InRelease [126 kB]
+Get:2 http://archive.ubuntu.com/ubuntu noble InRelease [256 kB]
+Get:3 http://security.ubuntu.com/ubuntu noble-security/main amd64 Packages [1055 kB]
+Get:4 http://archive.ubuntu.com/ubuntu noble-updates InRelease [126 kB]
+Get:5 http://security.ubuntu.com/ubuntu noble-security/multiverse amd64 Packages [22.1 kB]
+Get:6 http://security.ubuntu.com/ubuntu noble-security/universe amd64 Packages [1082 kB]
+Get:7 http://security.ubuntu.com/ubuntu noble-security/restricted amd64 Packages [1371 kB]
+Get:8 http://archive.ubuntu.com/ubuntu noble-backports InRelease [126 kB]
+Get:9 http://archive.ubuntu.com/ubuntu noble/main amd64 Packages [1808 kB]
+Get:10 http://archive.ubuntu.com/ubuntu noble/universe amd64 Packages [19.3 MB]
+Get:11 http://archive.ubuntu.com/ubuntu noble/restricted amd64 Packages [117 kB]
+Get:12 http://archive.ubuntu.com/ubuntu noble/multiverse amd64 Packages [331 kB]
+Get:13 http://archive.ubuntu.com/ubuntu noble-updates/universe amd64 Packages [1380 kB]
+Get:14 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 Packages [1382 kB]
+Get:15 http://archive.ubuntu.com/ubuntu noble-updates/restricted amd64 Packages [1431 kB]
+Get:16 http://archive.ubuntu.com/ubuntu noble-updates/multiverse amd64 Packages [26.7 kB]
+Get:17 http://archive.ubuntu.com/ubuntu noble-backports/main amd64 Packages [48.0 kB]
+Get:18 http://archive.ubuntu.com/ubuntu noble-backports/universe amd64 Packages [31.8 kB]
+Fetched 30.0 MB in 14s (2221 kB/s)
+Reading package lists... Done
+
+# apt-get install nginx
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+The following additional packages will be installed:
+  iproute2 krb5-locales libatm1t64 libbpf1 libcap2-bin libelf1t64 libgssapi-krb5-2 libk5crypto3 libkeyutils1
+  libkrb5-3 libkrb5support0 libmnl0 libpam-cap libtirpc-common libtirpc3t64 libxtables12 nginx-common
+Suggested packages:
+  iproute2-doc python3:any krb5-doc krb5-user fcgiwrap nginx-doc ssl-cert
+The following NEW packages will be installed:
+  iproute2 krb5-locales libatm1t64 libbpf1 libcap2-bin libelf1t64 libgssapi-krb5-2 libk5crypto3 libkeyutils1
+  libkrb5-3 libkrb5support0 libmnl0 libpam-cap libtirpc-common libtirpc3t64 libxtables12 nginx nginx-common
+0 upgraded, 18 newly installed, 0 to remove and 0 not upgraded.
+Need to get 2733 kB of archives.
+After this operation, 8075 kB of additional disk space will be used.
+Do you want to continue? [Y/n] y
+Get:1 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 libelf1t64 amd64 0.190-1.1ubuntu0.1 [57.8 kB]
+Get:2 http://archive.ubuntu.com/ubuntu noble/main amd64 libbpf1 amd64 1:1.3.0-2build2 [166 kB]
+Get:3 http://archive.ubuntu.com/ubuntu noble/main amd64 libmnl0 amd64 1.0.5-2build1 [12.3 kB]
+Get:4 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 libkrb5support0 amd64 1.20.1-6ubuntu2.5 [34.1 kB]
+Get:5 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 libk5crypto3 amd64 1.20.1-6ubuntu2.5 [82.0 kB]
+Get:6 http://archive.ubuntu.com/ubuntu noble/main amd64 libkeyutils1 amd64 1.6.3-3build1 [9490 B]
+Get:7 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 libkrb5-3 amd64 1.20.1-6ubuntu2.5 [347 kB]
+Get:8 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 libgssapi-krb5-2 amd64 1.20.1-6ubuntu2.5 [143 kB]
+Get:9 http://archive.ubuntu.com/ubuntu noble/main amd64 libtirpc-common all 1.3.4+ds-1.1build1 [8094 B]
+Get:10 http://archive.ubuntu.com/ubuntu noble/main amd64 libtirpc3t64 amd64 1.3.4+ds-1.1build1 [82.6 kB]
+Get:11 http://archive.ubuntu.com/ubuntu noble/main amd64 libxtables12 amd64 1.8.10-3ubuntu2 [35.7 kB]
+Get:12 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 libcap2-bin amd64 1:2.66-5ubuntu2.2 [34.2 kB]
+Get:13 http://archive.ubuntu.com/ubuntu noble/main amd64 iproute2 amd64 6.1.0-1ubuntu6 [1120 kB]
+Get:14 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 krb5-locales all 1.20.1-6ubuntu2.5 [14.5 kB]
+Get:15 http://archive.ubuntu.com/ubuntu noble/main amd64 libatm1t64 amd64 1:2.5.1-5.1build1 [22.9 kB]
+Get:16 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 libpam-cap amd64 1:2.66-5ubuntu2.2 [12.5 kB]
+Get:17 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 nginx-common all 1.24.0-2ubuntu7.3 [31.2 kB]
+Get:18 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 nginx amd64 1.24.0-2ubuntu7.3 [520 kB]
+Fetched 2733 kB in 2s (1100 kB/s)
+debconf: delaying package configuration, since apt-utils is not installed
+Selecting previously unselected package libelf1t64:amd64.
+(Reading database ... 4381 files and directories currently installed.)
+Preparing to unpack .../00-libelf1t64_0.190-1.1ubuntu0.1_amd64.deb ...
+Unpacking libelf1t64:amd64 (0.190-1.1ubuntu0.1) ...
+Selecting previously unselected package libbpf1:amd64.
+Preparing to unpack .../01-libbpf1_1%3a1.3.0-2build2_amd64.deb ...
+Unpacking libbpf1:amd64 (1:1.3.0-2build2) ...
+Selecting previously unselected package libmnl0:amd64.
+Preparing to unpack .../02-libmnl0_1.0.5-2build1_amd64.deb ...
+Unpacking libmnl0:amd64 (1.0.5-2build1) ...
+Selecting previously unselected package libkrb5support0:amd64.
+Preparing to unpack .../03-libkrb5support0_1.20.1-6ubuntu2.5_amd64.deb ...
+Unpacking libkrb5support0:amd64 (1.20.1-6ubuntu2.5) ...
+Selecting previously unselected package libk5crypto3:amd64.
+Preparing to unpack .../04-libk5crypto3_1.20.1-6ubuntu2.5_amd64.deb ...
+Unpacking libk5crypto3:amd64 (1.20.1-6ubuntu2.5) ...
+Selecting previously unselected package libkeyutils1:amd64.
+Preparing to unpack .../05-libkeyutils1_1.6.3-3build1_amd64.deb ...
+Unpacking libkeyutils1:amd64 (1.6.3-3build1) ...
+Selecting previously unselected package libkrb5-3:amd64.
+Preparing to unpack .../06-libkrb5-3_1.20.1-6ubuntu2.5_amd64.deb ...
+Unpacking libkrb5-3:amd64 (1.20.1-6ubuntu2.5) ...
+Selecting previously unselected package libgssapi-krb5-2:amd64.
+Preparing to unpack .../07-libgssapi-krb5-2_1.20.1-6ubuntu2.5_amd64.deb ...
+Unpacking libgssapi-krb5-2:amd64 (1.20.1-6ubuntu2.5) ...
+Selecting previously unselected package libtirpc-common.
+Preparing to unpack .../08-libtirpc-common_1.3.4+ds-1.1build1_all.deb ...
+Unpacking libtirpc-common (1.3.4+ds-1.1build1) ...
+Selecting previously unselected package libtirpc3t64:amd64.
+Preparing to unpack .../09-libtirpc3t64_1.3.4+ds-1.1build1_amd64.deb ...
+Adding 'diversion of /lib/x86_64-linux-gnu/libtirpc.so.3 to /lib/x86_64-linux-gnu/libtirpc.so.3.usr-is-merged by libtirpc3t64'
+Adding 'diversion of /lib/x86_64-linux-gnu/libtirpc.so.3.0.0 to /lib/x86_64-linux-gnu/libtirpc.so.3.0.0.usr-is-merged by libtirpc3t64'
+Unpacking libtirpc3t64:amd64 (1.3.4+ds-1.1build1) ...
+Selecting previously unselected package libxtables12:amd64.
+Preparing to unpack .../10-libxtables12_1.8.10-3ubuntu2_amd64.deb ...
+Unpacking libxtables12:amd64 (1.8.10-3ubuntu2) ...
+Selecting previously unselected package libcap2-bin.
+Preparing to unpack .../11-libcap2-bin_1%3a2.66-5ubuntu2.2_amd64.deb ...
+Unpacking libcap2-bin (1:2.66-5ubuntu2.2) ...
+Selecting previously unselected package iproute2.
+Preparing to unpack .../12-iproute2_6.1.0-1ubuntu6_amd64.deb ...
+Unpacking iproute2 (6.1.0-1ubuntu6) ...
+Selecting previously unselected package krb5-locales.
+Preparing to unpack .../13-krb5-locales_1.20.1-6ubuntu2.5_all.deb ...
+Unpacking krb5-locales (1.20.1-6ubuntu2.5) ...
+Selecting previously unselected package libatm1t64:amd64.
+Preparing to unpack .../14-libatm1t64_1%3a2.5.1-5.1build1_amd64.deb ...
+Unpacking libatm1t64:amd64 (1:2.5.1-5.1build1) ...
+Selecting previously unselected package libpam-cap:amd64.
+Preparing to unpack .../15-libpam-cap_1%3a2.66-5ubuntu2.2_amd64.deb ...
+Unpacking libpam-cap:amd64 (1:2.66-5ubuntu2.2) ...
+Selecting previously unselected package nginx-common.
+Preparing to unpack .../16-nginx-common_1.24.0-2ubuntu7.3_all.deb ...
+Unpacking nginx-common (1.24.0-2ubuntu7.3) ...
+Selecting previously unselected package nginx.
+Preparing to unpack .../17-nginx_1.24.0-2ubuntu7.3_amd64.deb ...
+Unpacking nginx (1.24.0-2ubuntu7.3) ...
+Setting up libkeyutils1:amd64 (1.6.3-3build1) ...
+Setting up libatm1t64:amd64 (1:2.5.1-5.1build1) ...
+Setting up libtirpc-common (1.3.4+ds-1.1build1) ...
+Setting up krb5-locales (1.20.1-6ubuntu2.5) ...
+Setting up libelf1t64:amd64 (0.190-1.1ubuntu0.1) ...
+Setting up libkrb5support0:amd64 (1.20.1-6ubuntu2.5) ...
+Setting up libcap2-bin (1:2.66-5ubuntu2.2) ...
+Setting up libmnl0:amd64 (1.0.5-2build1) ...
+Setting up libk5crypto3:amd64 (1.20.1-6ubuntu2.5) ...
+Setting up libxtables12:amd64 (1.8.10-3ubuntu2) ...
+Setting up libkrb5-3:amd64 (1.20.1-6ubuntu2.5) ...
+Setting up libpam-cap:amd64 (1:2.66-5ubuntu2.2) ...
+debconf: unable to initialize frontend: Dialog
+debconf: (No usable dialog-like program is installed, so the dialog based frontend cannot be used. at /usr/share/perl5/Debconf/FrontEnd/Dialog.pm line 79.)
+debconf: falling back to frontend: Readline
+debconf: unable to initialize frontend: Readline
+debconf: (Can't locate Term/ReadLine.pm in @INC (you may need to install the Term::ReadLine module) (@INC entries checked: /etc/perl /usr/local/lib/x86_64-linux-gnu/perl/5.38.2 /usr/local/share/perl/5.38.2 /usr/lib/x86_64-linux-gnu/perl5/5.38 /usr/share/perl5 /usr/lib/x86_64-linux-gnu/perl-base /usr/lib/x86_64-linux-gnu/perl/5.38 /usr/share/perl/5.38 /usr/local/lib/site_perl) at /usr/share/perl5/Debconf/FrontEnd/Readline.pm line 8.)
+debconf: falling back to frontend: Teletype
+Setting up libbpf1:amd64 (1:1.3.0-2build2) ...
+Setting up libgssapi-krb5-2:amd64 (1.20.1-6ubuntu2.5) ...
+Setting up libtirpc3t64:amd64 (1.3.4+ds-1.1build1) ...
+Setting up iproute2 (6.1.0-1ubuntu6) ...
+debconf: unable to initialize frontend: Dialog
+debconf: (No usable dialog-like program is installed, so the dialog based frontend cannot be used. at /usr/share/perl5/Debconf/FrontEnd/Dialog.pm line 79.)
+debconf: falling back to frontend: Readline
+debconf: unable to initialize frontend: Readline
+debconf: (Can't locate Term/ReadLine.pm in @INC (you may need to install the Term::ReadLine module) (@INC entries checked: /etc/perl /usr/local/lib/x86_64-linux-gnu/perl/5.38.2 /usr/local/share/perl/5.38.2 /usr/lib/x86_64-linux-gnu/perl5/5.38 /usr/share/perl5 /usr/lib/x86_64-linux-gnu/perl-base /usr/lib/x86_64-linux-gnu/perl/5.38 /usr/share/perl/5.38 /usr/local/lib/site_perl) at /usr/share/perl5/Debconf/FrontEnd/Readline.pm line 8.)
+debconf: falling back to frontend: Teletype
+Setting up nginx (1.24.0-2ubuntu7.3) ...
+invoke-rc.d: unknown initscript, /etc/init.d/nginx not found.
+invoke-rc.d: could not determine current runlevel
+Setting up nginx-common (1.24.0-2ubuntu7.3) ...
+debconf: unable to initialize frontend: Dialog
+debconf: (No usable dialog-like program is installed, so the dialog based frontend cannot be used. at /usr/share/perl5/Debconf/FrontEnd/Dialog.pm line 79.)
+debconf: falling back to frontend: Readline
+debconf: unable to initialize frontend: Readline
+debconf: (Can't locate Term/ReadLine.pm in @INC (you may need to install the Term::ReadLine module) (@INC entries checked: /etc/perl /usr/local/lib/x86_64-linux-gnu/perl/5.38.2 /usr/local/share/perl/5.38.2 /usr/lib/x86_64-linux-gnu/perl5/5.38 /usr/share/perl5 /usr/lib/x86_64-linux-gnu/perl-base /usr/lib/x86_64-linux-gnu/perl/5.38 /usr/share/perl/5.38 /usr/local/lib/site_perl) at /usr/share/perl5/Debconf/FrontEnd/Readline.pm line 8.)
+debconf: falling back to frontend: Teletype
+Processing triggers for libc-bin (2.39-0ubuntu8.4) ...
+
+# service nginx start
+ * Starting nginx nginx    
+# service nginx status
+ * nginx is running
+
+
+# thassi-ubuntu@Thassi:~$ docker container commit exercicio_ubuntu ubuntu_nginx_img
+sha256:3981a63aefc9c0cfe3e1048152cdaac7c1b2d897e0467852b41e9bba708c8165
+thassi-ubuntu@Thassi:~$ docker image save -o ubuntu-allumy.tar ubuntu_nginx_img
+thassi-ubuntu@Thassi:~$ docker container rm -f exercicio_ubuntu
+exercicio_ubuntu
+thassi-ubuntu@Thassi:~$ docker image rm ubuntu_nginx_img
+Untagged: ubuntu_nginx_img:latest
+Deleted: sha256:3981a63aefc9c0cfe3e1048152cdaac7c1b2d897e0467852b41e9bba708c8165
+Deleted: sha256:915c27a6864469158566dce86417f23fa45e886b02540272bcf81bf03741015a
+thassi-ubuntu@Thassi:~$ docker image load -i ubuntu-allumy.tar
+e79d59e98c16: Loading layer [==================================================>]  57.44MB/57.44MB
+Loaded image: ubuntu_nginx_img:latest
+thassi-ubuntu@Thassi:~$ docker container run -it ubuntu-allumy
+Unable to find image 'ubuntu-allumy:latest' locally
+docker: Error response from daemon: pull access denied for ubuntu-allumy, repository does not exist or may require 'docker login': denied: requested access to the resource is denied
+
+Run 'docker run --help' for more information
+thassi-ubuntu@Thassi:~$ docker container run -it ubuntu_nginx_img
+# service nginx status
+ * nginx is not running
+# service nginx start
+ * Starting nginx nginx                                                                                  [ OK ]
+# service nginx status
+ * nginx is running
+#

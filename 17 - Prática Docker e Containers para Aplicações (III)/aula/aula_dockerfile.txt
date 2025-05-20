@@ -1,0 +1,24 @@
+thassi-ubuntu@Thassi:~/docker-lamia$ sudo nano Dockerfile
+thassi-ubuntu@Thassi:~/docker-lamia$ cat Dockerfile
+FROM ubuntu
+RUN apt-get update && apt-get -y install vim
+thassi-ubuntu@Thassi:~/docker-lamia$ docker image build -t meu_ubuntu .
+[+] Building 34.1s (7/7) FINISHED                                                                                                                                            docker:default
+ => [internal] load build definition from Dockerfile                                                                                                                                   0.1s
+ => => transferring dockerfile: 94B                                                                                                                                                    0.0s
+ => [internal] load metadata for docker.io/library/ubuntu:latest                                                                                                                       2.7s
+ => [auth] library/ubuntu:pull token for registry-1.docker.io                                                                                                                          0.0s
+ => [internal] load .dockerignore                                                                                                                                                      0.1s
+ => => transferring context: 2B                                                                                                                                                        0.0s
+ => [1/2] FROM docker.io/library/ubuntu:latest@sha256:6015f66923d7afbc53558d7ccffd325d43b4e249f41a6e93eef074c9505d2233                                                                10.4s
+ => => resolve docker.io/library/ubuntu:latest@sha256:6015f66923d7afbc53558d7ccffd325d43b4e249f41a6e93eef074c9505d2233                                                                 0.0s
+ => => sha256:0622fac788edde5d30e7bbd2688893e5452a19ff237a2e4615e2d8181321cb4e 29.72MB / 29.72MB                                                                                       5.8s
+ => => sha256:6015f66923d7afbc53558d7ccffd325d43b4e249f41a6e93eef074c9505d2233 6.69kB / 6.69kB                                                                                         0.0s
+ => => sha256:dc17125eaac86538c57da886e494a34489122fb6a3ebb6411153d742594c2ddc 424B / 424B                                                                                             0.0s
+ => => sha256:a0e45e2ce6e6e22e73185397d162a64fcf2f80a41c597015cab05d9a7b5913ce 2.30kB / 2.30kB                                                                                         0.0s
+ => => extracting sha256:0622fac788edde5d30e7bbd2688893e5452a19ff237a2e4615e2d8181321cb4e                                                                                              4.0s
+ => [2/2] RUN apt-get update && apt-get -y install vim                                                                                                                                19.6s
+ => exporting to image                                                                                                                                                                 1.2s
+ => => exporting layers                                                                                                                                                                1.1s
+ => => writing image sha256:160528490705742a3d586c398c8f6bab5beb30657140478f8c0c99a27b447ca8                                                                                           0.0s
+ => => naming to docker.io/library/meu_ubuntu                                                                                 

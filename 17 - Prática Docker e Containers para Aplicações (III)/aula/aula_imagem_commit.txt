@@ -1,0 +1,51 @@
+thassi-ubuntu@Thassi:~$ docker container run --name nginx-allumy-thassi -it alpine sh
+/ # ls
+bin    etc    lib    mnt    proc   run    srv    tmp    var
+dev    home   media  opt    root   sbin   sys    usr
+/ # mkdir allumy
+/ # cd allumy/
+/allumy # touch docker
+/allumy # ls
+docker
+/allumy # echo "teste-thassi container para imagem" > docker
+/allumy # cat docker
+teste-thassi container para imagem
+/allumy # exit
+thassi-ubuntu@Thassi:~$ docker container ls
+CONTAINER ID   IMAGE                   COMMAND                  CREATED       STATUS                    PORTS                    NAMES
+0f2161a8c1a9   apache/airflow:2.10.5   "/usr/bin/dumb-init …"   7 weeks ago   Up 20 minutes (healthy)   8080/tcp                 docker-airflow-airflow-worker-1
+8b900be8c6ba   apache/airflow:2.10.5   "/usr/bin/dumb-init …"   7 weeks ago   Up 20 minutes (healthy)   8080/tcp                 docker-airflow-airflow-triggerer-1
+00d8e1a1e798   apache/airflow:2.10.5   "/usr/bin/dumb-init …"   7 weeks ago   Up 20 minutes (healthy)   0.0.0.0:8080->8080/tcp   docker-airflow-airflow-webserver-1
+c5f5be51b738   apache/airflow:2.10.5   "/usr/bin/dumb-init …"   7 weeks ago   Up 20 minutes (healthy)   8080/tcp                 docker-airflow-airflow-scheduler-1
+36080b82d7c1   redis:7.2-bookworm      "docker-entrypoint.s…"   7 weeks ago   Up 20 minutes (healthy)   6379/tcp                 docker-airflow-redis-1
+2f3281bc350a   postgres:13             "docker-entrypoint.s…"   7 weeks ago   Up 20 minutes (healthy)   5432/tcp                 docker-airflow-postgres-1
+thassi-ubuntu@Thassi:~$ docker commit --help
+Usage:  docker commit [OPTIONS] CONTAINER [REPOSITORY[:TAG]]
+
+Create a new image from a container's changes
+
+Aliases:
+  docker container commit, docker commit
+
+Options:
+  -a, --author string    Author (e.g., "John Hannibal Smith <hannibal@a-team.com>")
+  -c, --change list      Apply Dockerfile instruction to the created image
+  -m, --message string   Commit message
+  -p, --pause            Pause container during commit (default true)
+thassi-ubuntu@Thassi:~$ docker container commit nginx-allumy-thassi nginx-allumy-thassi-img
+sha256:d543d52cde9f4e4fd19416def269846fa5030a97752d987bb61e193d3ed9cc89
+thassi-ubuntu@Thassi:~$ docker image ls
+REPOSITORY                  TAG             IMAGE ID       CREATED         SIZE
+nginx-allumy-thassi-img     latest          d543d52cde9f   5 seconds ago   7.83MB
+
+
+thassi-ubuntu@Thassi:~$ docker run -it --rm nginx-allumy-thassi-img sh
+/ # ls
+allumy  dev     home    media   opt     root    sbin    sys     usr
+bin     etc     lib     mnt     proc    run     srv     tmp     var
+/ # cd allumy/
+/allumy # cat docker
+teste-thassi container para imagem
+/allumy # exir
+sh: exir: not found
+/allumy # exit

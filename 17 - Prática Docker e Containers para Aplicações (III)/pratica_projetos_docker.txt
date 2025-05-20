@@ -1,0 +1,8 @@
+Projeto de desenvolvimento do site do planejamento participativo da UTFPR-PB, utiliza Docker para rodar em produção e hospedar o site na VM da universidade. O container possui comunicação com banco de dados hospedado na mesma VM.
+
+https://github.com/ThassiAmorim/Dashboards_Interativos_PP_UTFPR
+
+
+Projeto de desenvolvimento de um ToDoList, explora a comunicação de um projeto RoR dentro de um container com APIs da internet. 
+
+https://github.com/ThassiAmorim/ToDoList

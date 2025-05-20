@@ -1,0 +1,33 @@
+thassi-ubuntu@Thassi:~/imagens_docker_lamia$ docker image save -o nginx-allumy-thassi.tar nginx-allumy-thassi-img
+thassi-ubuntu@Thassi:~/imagens_docker_lamia$ ls
+nginx-allumy-thassi.tar
+thassi-ubuntu@Thassi:~/imagens_docker_lamia$ docker image rm nginx-allumy-thassi-img
+Untagged: nginx-allumy-thassi-img:latest
+Deleted: sha256:d543d52cde9f4e4fd19416def269846fa5030a97752d987bb61e193d3ed9cc89
+Deleted: sha256:f39b131ad84ae1cad0eb4bc716ee1c11753b661d801b1c2b74975262c22676d8
+
+thassi-ubuntu@Thassi:~/imagens_docker_lamia$ docker image ls
+REPOSITORY                  TAG             IMAGE ID       CREATED         SIZE
+nginx                       latest          a830707172e8   4 weeks ago     192MB
+debian                      bookworm-slim   8077017cbbd1   2 months ago    74.8MB
+postgres                    13              ebcc4a15b2eb   2 months ago    423MB
+alpine                      latest          aded1e1a5b37   3 months ago    7.83MB
+
+
+
+thassi-ubuntu@Thassi:~/imagens_docker_lamia$ docker image load -i nginx-allumy-thassi.tar
+15d448fc01ba: Loading layer  4.096kB/4.096kB
+Loaded image: nginx-allumy-thassi-img:latest
+thassi-ubuntu@Thassi:~/imagens_docker_lamia$ docker image ls
+REPOSITORY                  TAG             IMAGE ID       CREATED         SIZE
+nginx-allumy-thassi-img     latest          d543d52cde9f   9 minutes ago   7.83MB
+nginx                       latest          a830707172e8   4 weeks ago     192MB
+debian                      bookworm-slim   8077017cbbd1   2 months ago    74.8MB
+
+
+thassi-ubuntu@Thassi:~/imagens_docker_lamia$ docker container run -it --rm nginx-allumy-thassi-img:latest
+/ # cd allumy/
+/allumy # ls
+docker
+/allumy # cat docker
+teste-thassi container para imagem
